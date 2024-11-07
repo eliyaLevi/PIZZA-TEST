@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 
+
 export interface User {
   id?: string;
   name: string;
   img: string;
-  pizzaToppings: [];
+  pizzaToppings: Topping[];
 }
 
 export interface Topping {
@@ -26,10 +27,11 @@ export const DispleyUsers = (props: PropsUser) => {
   // const [flag, setFlag] = useState(false);
 
   return (
+    <>
     <div className="card-list">
       {props.users.map((user) => (
         <div key={user.id} className="card">
-          <h3>UserName : {user.name} </h3>
+          <h3> {user.name} </h3>
           <img src={user.img} alt="img dog" />
           <h3 >העדפות : {user.pizzaToppings.map((t) => (
             <button onClick={() => props.addTopping(t)}>{t.name}</button>
@@ -38,5 +40,7 @@ export const DispleyUsers = (props: PropsUser) => {
         </div>
       ))}
     </div>
+    </>
+    
   );
 };

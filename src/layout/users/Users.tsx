@@ -8,7 +8,7 @@ export interface User {
   id?: string;
   name: string;
   img: string;
-  pizzaToppings: [];
+  pizzaToppings: Topping[];
 }
 
 export interface Topping {
@@ -19,7 +19,7 @@ export interface Topping {
 
 export const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [toppingsUsers, setSToppingsUsers] = useState<User[]>([]);
+  const [toppingsUsers, setSToppingsUsers] = useState<Topping[]>([]);
 
   useEffect(() => {
     fetch("/data.json")
@@ -29,13 +29,8 @@ export const Users = () => {
   }, []);
 
   const addTopping = (newTopping: Topping): void => {
-    if (toppingsUsers.length < 5) {
-      if (toppingsUsers.find((u) => u.id === newTopping.id)) {
-        console.log("קיים כבר התוספת הזאת אנה בחר משהו אחר");
-      }
-
+    if (toppingsUsers.length >= 5 || toppingsUsers.find(t =>  t.name=== newTopping.name)) return
       setSToppingsUsers([...toppingsUsers, newTopping]);
-    }
   };
 
   return (
