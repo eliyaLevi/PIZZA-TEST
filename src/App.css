@@ -87,8 +87,7 @@ main {
 
 
 .card button {
-  display: flex;
-  flex-direction: column;
+ 
   background-color: #555;
   color: white;
   border: none;
